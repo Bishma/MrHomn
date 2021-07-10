@@ -1,46 +1,90 @@
 version: "3.6"
 services:
-  #nginx:
-    # /:443 => 8123
-    # /api/appdaemon:443 => 5050
+  #Thanks to: https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71
+  nginx:
+    container_name: nginx
+    image: nginx:1.15-alpine
+    restart: unless-stopped
+    ports:
+      - "8321:80"
+      - "8322:443"
+    volumes:
+      - ./nginx/config:/etc/nginx/conf.d
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+    depends_on: 
+      - hass
+      #- appdaemon
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  certbot:
+    container_name: certbot
+    image: certbot/certbot
+    restart: unless-stopped
+    volumes:
+      - ./nginx/config:/etc/nginx/conf.d
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
   hass:
+    container_name: homeassistant
     image: homeassistant/home-assistant:stable
     restart: unless-stopped
     environment:
       - TZ=${TZ}
-    ports:
-      - "8123:8123"
+    expose:
+      - 8123
     volumes:
-      - "${PDATA_BASE_PATH}/hass:/config"
-    depends_on:
-      - sql_db
+      - ./hass:/config
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+  #  depends_on:
+  #    - sql_db
   #appdaemon:
-  #  appdaemon:
   #  container_name: appdaemon
   #  restart: unless-stopped
   #  image: acockburn/appdaemon
   #  environment:
   #    HA_URL: "http://hass:8123"
   #    TOKEN: "${HA_APPDAEMON_KEY}"
-  #  ports:
-  #    - "5050:5050"
+  #  expose:
+  #    - 5050
   #  volumes:
   #    - "${PDATA_BASE_PATH}/appdaemon/config:/conf"
   #  depends_on:
   #    - hass
   #  user: "${UID}:${GID}"
-  sql_db: 
-    image: linuxserver/mariadb # https://hub.docker.com/r/linuxserver/mariadb
-    restart: unless-stopped
-    environment:
-      - PUID="${UID}"
-      - PGID="${GID}"
-      - MYSQL_ROOT_PASSWORD=1234
-      - TZ=${TZ}
-      - MYSQL_DATABASE=hass
-      - MYSQL_USER=hassdb
-      - MYSQL_PASSWORD=changeme
-    ports:
-      - "3306:3306"
-    volumes:
-      - "${PDATA_BASE_PATH}/sql_db/config:/config"
+  #esphome:
+  #  image: esphome/esphome # https://hub.docker.com/r/esphome/esphome
+  #  restart: unless-stopped
+  #  volumes:
+  #    - "${PDATA_BASE_PATH}/esphome/config:/config"
+  #sql_db: 
+  #  image: linuxserver/mariadb  #https://hub.docker.com/r/linuxserver/mariadb
+  #  restart: always
+  #  environment:
+  #    - PUID="${UID}"
+  #    - PGID="${GID}""
+  #    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT}
+  #    - TZ=${TZ}
+  #    - MYSQL_DATABASE=hass
+  #    - MYSQL_USER=hass
+  #    - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  #  expose:
+  #    - 3306
+  #  volumes:
+  #    - "${PDATA_BASE_PATH}/sql_db/config:/config"
+  #drbackup:
+  #  build:
+  #    context: ./drbackup
+  #  restart: unless-stopped
+  #  depends_on: sql_db
