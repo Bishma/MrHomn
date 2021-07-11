@@ -1,0 +1,421 @@
+homeassistant:
+  # My network setup
+  external_url: !secret hass_url_full
+  internal_url: http://hass:8123
+
+  allowlist_external_dirs:
+    - '/tmp'
+
+# The automation part of home autiomation
+# https://www.home-assistant.io/components/automation/
+automation: !include automations.yaml
+
+camera:
+  - platform: generic
+    name: Beltline at River Rd
+    still_image_url: https://tripcheck.com/RoadCams/cams/Eugene%20River%20Ave._pid2539.JPG
+  - platform: generic
+    name: Downtown Eugene
+    still_image_url: http://70.102.97.236/cameras/original2.jpg
+  - platform: mjpeg
+    name: OctoPrint 1
+    still_image_url: http://192.168.68.247:8080?action=snapshot
+    mjpeg_url: http://192.168.68.247:8080?action=stream
+  - platform: mjpeg
+    name: OctoPrint 2
+    still_image_url: http://192.168.68.247:8081?action=snapshot
+    mjpeg_url: http://192.168.68.247:8081?action=stream
+
+# Allows for direct on/off control through alexa w/o having to invoke my custom skill
+# https://www.home-assistant.io/integrations/cloud/
+cloud:
+
+# Enables configuration UI
+# https://www.home-assistant.io/integrations/config/
+config:
+
+# "This offers the official frontend to control Home Assistant."
+# https://www.home-assistant.io/components/frontend/
+frontend:
+  themes: !include_dir_merge_named themes
+
+# Grouping entities for singular control
+# https://www.home-assistant.io/integrations/group/
+group: !include groups.yaml
+
+# Enables support for tracking state changes over time
+# https://www.home-assistant.io/components/history/
+history:
+
+# "The http component serves all files and data required for the Home Assistant frontend."
+# https://www.home-assistant.io/components/http/
+http:
+  # Add password to keep out the randos
+  #ip_ban_enabled: true
+
+  # More than this number of failures results in temp ban
+  login_attempts_threshold: 5
+
+  # Because I use a proxy
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.20.0.0/24
+
+input_boolean:
+  # Display the bedroom media control UI
+  bedroom_media_ui:
+    name: Enable Bedroom Controls
+    icon: mdi:hotel
+  # If the stand fan is in the living room, it can be controlled via harmony remote commands
+  fan_out:
+    name: Is the stand fan out?
+    icon: mdi:fan
+  # Used as a geo-fence based reminder to turn my space heater off before I leave work
+  idx_heater_on:
+    name: Heater On
+    icon: mdi:radiator
+  # Used to populate living room media center activity switching picture glance
+  livingroom_media_state_amazon:
+    name: Amazon
+    icon: mdi:amazon
+  livingroom_media_state_htpc:
+    name: HTPC
+    icon: mdi:monitor
+  livingroom_media_state_hulu:
+    name: Hulu
+    icon: mdi:hulu
+  livingroom_media_state_netflix:
+    name: Netflix
+    icon: mdi:netflix
+  livingroom_media_state_plex:
+    name: Plex
+    icon: mdi:plex
+  livingroom_media_state_power:
+    name: Power
+    icon: mdi:power
+  livingroom_media_state_records:
+    name: Records
+    icon: mdi:record-player
+  livingroom_media_state_philo:
+    name: Philo
+    icon: mdi:television-guide
+  livingroom_media_state_spotify:
+    name: Spotify
+    icon: mdi:spotify
+  livingroom_media_state_youtube:
+    name: Youtube
+    icon: mdi:youtube
+input_number:
+  # What daytime high temp should trigger the bedroom AC to turn on ahead of bedtime
+  bedroom_ac_trigger_temp:
+    name: Daytime High Trigger
+    mode: slider
+    unit_of_measurement: °
+    min: 70
+    max: 85
+    step: 1
+  tracked_high_temperature:
+    name: Observed Daytime High (Since Noon)
+    unit_of_measurement: °
+    icon: mdi:thermometer-lines
+    min: -10
+    max: 120
+input_select:
+  # Changing harmony activities
+  livingroom_media_switch:
+    name: Living Room Activity
+    icon: mdi:television-play
+    options:
+    - Hulu
+    - Netflix
+    - Youtube
+    - Amazon
+    - Plex
+    - Philo
+    - Spotify
+    - Record Player
+    - 'Off'
+  # The previous, non-off, activity, for restoring last 'on' state
+  livingroom_media_switch_last:
+    name: Living Room Activity
+    icon: mdi:rewind
+    options:
+    - Hulu
+    - Netflix
+    - Youtube
+    - Amazon
+    - Plex
+    - Philo
+    - Spotify
+    - Record Player
+    - 'Off'
+  # For the times when presence detection breaks
+  occupation_override:
+    name: Force Occupation Setting
+    icon: mdi:account-group
+    options:
+    - Automatic
+    - Occupied
+    - Unoccupied
+
+# "The logger component lets you define the level of logging activities in Home Assistant."
+# https://www.home-assistant.io/components/logger/
+logger:
+  default: warning
+
+# Front end gui
+# https://www.home-assistant.io/lovelace/
+lovelace:
+
+# "The Mobile App integration allows Home Assistant mobile apps to easily integrate with Home Assistant."
+# https://www.home-assistant.io/integrations/mobile_app/
+mobile_app:
+
+# Netatmo weather station
+# https://www.home-assistant.io/components/netatmo/
+netatmo:
+  client_id: !secret netatmo_key
+  client_secret: !secret netatmo_secret
+
+notify:
+  - platform: telegram
+    name: janet_reports
+    chat_id: !secret telegram_chat_id_1
+
+octoprint:
+  host: 192.168.68.247
+  api_key: !secret octoprint_api_key
+  bed: true
+  number_of_tools: 1
+
+# "The person integration allows connecting device tracker entities to one or more person entities."
+# https://www.home-assistant.io/integrations/person/
+person:
+
+# "The recorder component is responsible for storing details in a database, which then are handled by the history component."
+# https://www.home-assistant.io/components/recorder/
+recorder:
+  db_url: !secret mariadb
+
+rest_command:
+  bedtime_routine:
+    url: !secret autoremote_bedtime_routine
+
+scene: !include scenes.yaml
+
+# "The script component allows users to specify a sequence of actions to be executed by Home Assistant when turned on."
+# https://www.home-assistant.io/components/script/
+script: !include scripts.yaml
+
+sensor:
+  # Min/Max Tracking
+  - platform: min_max
+    entity_ids:
+      - sensor.outdoor_temperature
+    type: min
+    name: Daily Low Temperature
+  - platform: min_max
+    entity_ids:
+      - sensor.outdoor_temperature
+    type: max
+    name: Daily High Temperature
+  # THE MOON!!!
+  - platform: moon
+  # Template Sensors
+  - platform: template
+    sensors:
+      # Converting units
+      convert_backyard_wind:
+        unit_of_measurement: "mph"
+        friendly_name: 'Backyard Wind Strength'
+        value_template: "{{ (states('sensor.netatmo_backyard_strength') | float / 1.609) | round(2) }}"
+      convert_backyard_gust:
+        unit_of_measurement: "mph"
+        friendly_name: 'Backyard Wind Gust Strenth'
+        value_template: "{{ (states('sensor.netatmo_backyard_gust_strength') | float / 1.609) | round(2) }}"
+      convert_night_binary:
+        unit_of_measurement: suns
+        friendly_name: Sun Below Horizon Binary
+        value_template: >
+          {%- if is_state("sun.sun", "above_horizon") -%}
+            0
+          {%- else -%}
+            1
+          {%- endif -%}
+      # Harmony current activity
+      livingroom_remote_state:
+        value_template: '{{ states.remote.livingroom.attributes.current_activity }}'
+        friendly_name: 'Current Activity:'
+      # It will simplify cards and scripts to translate the current Harmony activity into the device and IDs in use
+      livingroom_media_activity_id:
+        value_template: >
+          {% if states.remote.livingroom.attributes.current_activity == "Amazon" %}
+            31480109
+          {% elif states.remote.livingroom.attributes.current_activity == "Hulu" %}
+            31949557
+          {% elif states.remote.livingroom.attributes.current_activity == "HTPC" %}
+            31479535
+          {% elif states.remote.livingroom.attributes.current_activity == "Netflix" %}
+            31478989
+          {% elif states.remote.livingroom.attributes.current_activity == "OTA" %}
+            31480260
+          {% elif states.remote.livingroom.attributes.current_activity == "Plex" %}
+            31571897
+          {% elif states.remote.livingroom.attributes.current_activity == "Philo" %}
+            31480008
+          {% elif states.remote.livingroom.attributes.current_activity == "Youtube" %}
+            33323580
+          {% elif states.remote.livingroom.attributes.current_activity == "Spotify" %}
+            43030123  
+          {% elif states.remote.livingroom.attributes.current_activity == "Record Player" %}
+            38156985
+          {% elif states.remote.livingroom.attributes.current_activity == "PowerOff" %}
+            -1
+          {% else %}
+            unknown
+          {% endif %}
+        friendly_name: 'Current Activity ID' 
+      livingroom_media_device:
+        value_template: >
+          {% if states.remote.livingroom.attributes.current_activity == "HTPC" %}
+            htpc
+          {% elif states.remote.livingroom.attributes.current_activity == "Amazon"
+                or  states.remote.livingroom.attributes.current_activity == "Hulu"
+                or  states.remote.livingroom.attributes.current_activity == "Netflix"
+                or states.remote.livingroom.attributes.current_activity == "Plex"
+                or states.remote.livingroom.attributes.current_activity == "Listen to Spotify"
+                or states.remote.livingroom.attributes.current_activity == "Philo"
+                or states.remote.livingroom.attributes.current_activity == "Youtube" %}
+            roku
+          {% elif states.remote.livingroom.attributes.current_activity == "OTA" %}
+            ota
+          {% elif states.remote.livingroom.attributes.current_activity == "Play Switch" %}
+            switch
+          {% elif states.remote.livingroom.attributes.current_activity == "Listen to Records" %}
+            bluetooth
+          {% elif states.remote.livingroom.attributes.current_activity == "PowerOff" %}
+            off
+          {% else %}
+            unknown
+          {% endif %}
+        friendly_name: Current Remote Device
+        icon_template: >
+          {%- if states("sensor.livingroom_remote_state") == 'PowerOff' -%}
+            mdi:sleep
+          {%- elif states("sensor.livingroom_remote_state") == 'Plex' -%}
+           mdi:plex
+          {%- elif states("sensor.livingroom_remote_state") == 'Philo' -%}
+            mdi:rss
+          {%- elif states("sensor.livingroom_remote_state") == 'Netflix' -%}
+            mdi:netflix
+          {%- elif states("sensor.livingroom_remote_state") == 'Youtube' -%}
+            mdi:youtube
+          {%- elif states("sensor.livingroom_remote_state") == 'Hulu' -%}
+            mdi:hulu
+          {%- elif states("sensor.livingroom_remote_state") == 'HTPC' -%}
+            mdi:monitor
+          {%- elif states("sensor.livingroom_remote_state") == 'Amazon' -%}
+            mdi:amazon
+          {%- elif states("sensor.livingroom_remote_state") == 'Spotify' -%}
+            mdi:spotify
+          {%- elif states("sensor.livingroom_remote_state") == 'Records' -%}
+            mdi:record-player
+          {%- else -%}
+            mdi:help
+          {%- endif -%}
+      livingroom_media_device_id:
+        value_template: >
+          {% if is_state("sensor.livingroom_media_device", "htpc") %}
+            51738178
+          {% elif is_state("sensor.livingroom_media_device", "roku") %}
+            66658758
+          {% else %}
+            off
+          {% endif %}
+        friendly_name: 'Current Media Device ID'
+      # Attribute -> state
+      outdoor_pressure:
+        value_template: '{{ states.sensor.waqi_eugene_highway_99_oregon_usa.attributes.pressure }}'
+        friendly_name: Outdoor Pressure
+        unit_of_measurement: mbar
+        icon_template: "mdi:gauge"
+      outdoor_temperature:
+        value_template: '{{ (states.sensor.waqi_eugene_highway_99_oregon_usa.attributes.temperature | float / 5 * 9 + 32) | round(1) }}'
+        friendly_name: Outdoor Temperature
+        unit_of_measurement: °F
+        icon_template: "mdi:thermometer"
+      outdoor_humidity:
+        value_template: '{{ (states.sensor.waqi_eugene_highway_99_oregon_usa.attributes.humidity | float) | round(1) }}'
+        friendly_name: Outdoor Humidity
+        unit_of_measurement: '%'
+        icon_template: "mdi:water-percent"
+      garage_smoke_detector_status:
+        friendly_name: 'Garage Smoke Detector Status'
+        value_template: >-
+          {% if is_state("sensor.garage_smoke_detector_alarm_level", "255") and is_state("sensor.garage_smoke_detector_alarm_type", "1")%}
+          smoke
+          {% elif is_state("sensor.garage_smoke_detector_alarm_level", "255") and is_state("sensor.garage_smoke_detector_alarm_type", "2")%}
+          co
+          {% elif is_state("sensor.garage_smoke_detector_alarm_level", "0") and is_state("sensor.garage_smoke_detector_alarm_type", "12")%}
+          test
+          {% elif is_state("sensor.garage_smoke_detector_alarm_level", "255") and is_state("sensor.garage_smoke_detector_alarm_type", "13")%}
+          idle
+          {% else %}
+          idle
+          {% endif %}
+        icon_template: >-
+          {% if is_state("sensor.garage_smoke_detector_alarm_level", "255") and is_state("sensor.garage_smoke_detector_alarm_type", "1")%}
+          mdi:fire
+          {% elif is_state("sensor.garage_smoke_detector_alarm_level", "255") and is_state("sensor.garage_smoke_detector_alarm_type", "2")%}
+          mdi:cloud-outline
+          {% elif is_state("sensor.garage_smoke_detector_alarm_level", "0") and is_state("sensor.garage_smoke_detector_alarm_type", "12")%}
+          mdi:alert-octagram
+          {% elif is_state("sensor.garage_smoke_detector_alarm_level", "255") and is_state("sensor.garage_smoke_detector_alarm_type", "13")%}
+          mdi:smoke-detector
+          {% endif %}
+  - platform: waqi
+    token: !secret waqi_key
+    locations:
+      - "Eugene - Highway 99, Oregon"
+
+# "The sun component will use your current location to track if the sun is above or below the horizon."
+# https://www.home-assistant.io/components/sun/
+sun:
+
+# "The System Health component provides an API to offer information on the system and its components."
+# https://www.home-assistant.io/components/system_health/
+system_health:
+
+tplink:
+  discovery: false
+  light:
+    - host: 192.168.68.200
+    - host: 192.168.68.207
+    - host: 192.168.68.208
+    - host: 192.168.68.209
+    - host: 192.168.68.210
+    - host: 192.168.68.211
+    - host: 192.168.68.212
+  switch:
+    - host: 192.168.68.201
+    - host: 192.168.68.202
+    - host: 192.168.68.203
+    - host: 192.168.68.204
+    - host: 192.168.68.205
+  strip:
+    - host: 192.168.68.206
+    - host: 192.168.68.248
+    - host: 192.168.68.249
+
+# Telegram Platform for use with notifications
+# https://www.home-assistant.io/components/telegram/
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_key
+    allowed_chat_ids:
+      - !secret telegram_chat_id_1
+      - !secret telegram_chat_id_2
+
+# Checks for available updates
+# https://www.home-assistant.io/components/updater/
+updater:

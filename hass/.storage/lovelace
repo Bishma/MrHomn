@@ -1,0 +1,1443 @@
+{
+    "version": 1,
+    "key": "lovelace",
+    "data": {
+        "config": {
+            "title": "Yggdrasil",
+            "views": [
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "vertical-stack",
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "switch.garage_heater",
+                                            "icon": "mdi:pine-tree",
+                                            "state_color": true,
+                                            "name": "Mega Sparkle"
+                                        },
+                                        {
+                                            "entity": "switch.the_sparkle",
+                                            "icon": "mdi:star-face",
+                                            "state_color": true
+                                        },
+                                        {
+                                            "entity": "light.love_seat_up"
+                                        },
+                                        {
+                                            "entity": "light.love_seat_middle"
+                                        }
+                                    ],
+                                    "title": "Living Room",
+                                    "type": "entities"
+                                },
+                                {
+                                    "type": "glance",
+                                    "entities": [
+                                        {
+                                            "entity": "switch.derek_power_1",
+                                            "name": "Laptop",
+                                            "icon": "mdi:laptop",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            }
+                                        },
+                                        {
+                                            "entity": "switch.derek_power_2",
+                                            "name": "Lamp",
+                                            "icon": "mdi:floor-lamp",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            }
+                                        },
+                                        {
+                                            "entity": "switch.derek_power_3",
+                                            "name": "Switch 3",
+                                            "icon": "mdi:power-socket-us",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            }
+                                        },
+                                        {
+                                            "entity": "switch.derek_power_4",
+                                            "name": "Switch 4",
+                                            "icon": "mdi:power-socket-us",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            }
+                                        },
+                                        {
+                                            "entity": "switch.derek_power_5",
+                                            "name": "Switch 5",
+                                            "icon": "mdi:power-socket-us",
+                                            "tap_action": "toggle",
+                                            "hold_action": "more-info"
+                                        },
+                                        {
+                                            "entity": "switch.derek_power_6",
+                                            "name": "Switch 6",
+                                            "icon": "mdi:medical-bag",
+                                            "tap_action": {
+                                                "action": "toggle"
+                                            },
+                                            "hold_action": {
+                                                "action": "more-info"
+                                            }
+                                        }
+                                    ],
+                                    "show_state": false,
+                                    "state_color": true,
+                                    "columns": 6,
+                                    "title": "Derek's Power Strip"
+                                }
+                            ]
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "group.dining_room",
+                                    "icon": "mdi:globe-light",
+                                    "state_color": true
+                                }
+                            ],
+                            "show_header_toggle": false,
+                            "title": "Dining Room",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "switch.derek_bedroom_lamp",
+                                    "icon": "mdi:lamp",
+                                    "state_color": true
+                                },
+                                {
+                                    "entity": "switch.bonnie_bedroom_lamp",
+                                    "icon": "mdi:lamp",
+                                    "state_color": true
+                                }
+                            ],
+                            "title": "Bedroom",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                "light.the_sink_hole"
+                            ],
+                            "title": "Kitchen",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "switch.back_porch_switch",
+                                    "icon": "mdi:string-lights",
+                                    "state_color": true
+                                }
+                            ],
+                            "title": "Outdoor",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "switch.workbench_light",
+                                    "icon": "mdi:ceiling-light",
+                                    "name": "Workbench Light",
+                                    "state_color": true
+                                },
+                                {
+                                    "entity": "switch.spaghetti_lamp",
+                                    "icon": "mdi:globe-light",
+                                    "state_color": true
+                                },
+                                {
+                                    "entity": "switch.garage_misc"
+                                }
+                            ],
+                            "title": "Garage",
+                            "type": "entities"
+                        },
+                        {
+                            "entity": "weather.cottage",
+                            "type": "weather-forecast"
+                        },
+                        {
+                            "control": [
+                                {
+                                    "hvac": false
+                                },
+                                {
+                                    "preset": false
+                                }
+                            ],
+                            "decimals": 0,
+                            "entity": "climate.cottage",
+                            "icon": "mdi:thermostat",
+                            "name": "Thermostat",
+                            "sensors": [
+                                {
+                                    "entity": "sensor.livingroom_temperature",
+                                    "name": "Living Room"
+                                }
+                            ],
+                            "step_layout": "row",
+                            "step_size": 1,
+                            "type": "custom:simple-thermostat"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "script.bedtime_ac_power",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:power-plug-off",
+                                            "name": "Off",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "script.bedtime_ac_power"
+                                            },
+                                            "type": "button"
+                                        },
+                                        {
+                                            "entity": "script.bedtime_ac_precondition",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:air-conditioner",
+                                            "name": "Pre-Cond.",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "script.bedtime_ac_precondition"
+                                            },
+                                            "type": "button"
+                                        },
+                                        {
+                                            "entity": "script.bedtime_ac_fan_only",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:fan",
+                                            "name": "Fan Only",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "script.bedtime_ac_fan_only"
+                                            },
+                                            "type": "button"
+                                        },
+                                        {
+                                            "entity": "script.bedtime_ac_temp_timer_up",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:arrow-up-bold",
+                                            "name": "Temp Up",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "script.bedtime_ac_temp_timer_up"
+                                            },
+                                            "type": "button"
+                                        },
+                                        {
+                                            "entity": "script.bedtime_ac_fan_faster",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:arrow-up-bold",
+                                            "name": "Fan Faster",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "script.bedtime_ac_fan_faster",
+                                                "service_data": {
+                                                    "entity_id": "script.bedtime_ac_fan_faster"
+                                                }
+                                            },
+                                            "type": "button"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                },
+                                {
+                                    "cards": [
+                                        {
+                                            "entity": "script.bedtime_ac_cool",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:snowflake",
+                                            "name": "Cool",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "script.bedtime_ac_cool"
+                                            },
+                                            "type": "button"
+                                        },
+                                        {
+                                            "entity": "script.bedtime_ac_precondition",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:fan",
+                                            "name": "Cool+Auto",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "script.bedtime_ac_cool_auto"
+                                            },
+                                            "type": "button"
+                                        },
+                                        {
+                                            "entity": "script.bedtime_ac_auto_fan",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:fan",
+                                            "name": "Fan Auto",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "script.bedtime_ac_auto_fan"
+                                            },
+                                            "type": "button"
+                                        },
+                                        {
+                                            "entity": "script.bedtime_ac_temp_timer_down",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:arrow-down-bold",
+                                            "name": "Temp Dwn",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "script.bedtime_ac_temp_timer_down"
+                                            },
+                                            "type": "button"
+                                        },
+                                        {
+                                            "entity": "script.bedtime_ac_fan_slower",
+                                            "hold_action": {
+                                                "action": "none"
+                                            },
+                                            "icon": "mdi:arrow-down-bold",
+                                            "name": "Fan Slower",
+                                            "show_icon": true,
+                                            "show_name": true,
+                                            "tap_action": {
+                                                "action": "call-service",
+                                                "service": "script.bedtime_ac_fan_slower"
+                                            },
+                                            "type": "button"
+                                        }
+                                    ],
+                                    "type": "horizontal-stack"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "card": {
+                                "cards": [
+                                    {
+                                        "entity": "script.livingroom_fan_on",
+                                        "hold_action": {
+                                            "action": "none"
+                                        },
+                                        "icon": "mdi:power-standby",
+                                        "name": "Power",
+                                        "show_icon": true,
+                                        "show_name": true,
+                                        "tap_action": {
+                                            "action": "call-service",
+                                            "service": "script.turn_on",
+                                            "service_data": {
+                                                "entity_id": "script.livingroom_fan_on"
+                                            }
+                                        },
+                                        "type": "button"
+                                    },
+                                    {
+                                        "entity": "script.livingroom_fan_osc",
+                                        "hold_action": {
+                                            "action": "none"
+                                        },
+                                        "icon": "mdi:rotate-3d-variant",
+                                        "name": "Oscillate",
+                                        "show_icon": true,
+                                        "show_name": true,
+                                        "tap_action": {
+                                            "action": "call-service",
+                                            "service": "script.livingroom_fan_osc",
+                                            "service_data": {
+                                                "entity_id": "script.livingroom_fan_osc"
+                                            }
+                                        },
+                                        "type": "button"
+                                    },
+                                    {
+                                        "entity": "script.livingroom_fan_speed",
+                                        "hold_action": {
+                                            "action": "none"
+                                        },
+                                        "icon": "mdi:speedometer",
+                                        "name": "Speed",
+                                        "show_icon": true,
+                                        "show_name": true,
+                                        "tap_action": {
+                                            "action": "call-service",
+                                            "service": "script.livingroom_fan_speed",
+                                            "service_data": {
+                                                "entity_id": "script.livingroom_fan_speed"
+                                            }
+                                        },
+                                        "type": "button"
+                                    }
+                                ],
+                                "type": "horizontal-stack"
+                            },
+                            "conditions": [
+                                {
+                                    "entity": "input_boolean.fan_out",
+                                    "state": "on"
+                                }
+                            ],
+                            "type": "conditional"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "entity": "scene.early_morning",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "icon": "mdi:weather-sunset-up",
+                                    "show_icon": true,
+                                    "show_name": true,
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "scene.turn_on",
+                                        "service_data": {
+                                            "entity_id": "scene.early_morning"
+                                        }
+                                    },
+                                    "type": "button"
+                                },
+                                {
+                                    "entity": "scene.rise_and_shine",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "icon": "mdi:white-balance-sunny",
+                                    "show_icon": true,
+                                    "show_name": true,
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "scene.turn_on",
+                                        "service_data": {
+                                            "entity_id": "scene.rise_and_shine"
+                                        }
+                                    },
+                                    "type": "button"
+                                },
+                                {
+                                    "entity": "script.routine_bedtime",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "icon": "mdi:bed",
+                                    "show_icon": true,
+                                    "show_name": true,
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "script.routine_bedtime"
+                                    },
+                                    "type": "button"
+                                }
+                            ],
+                            "type": "horizontal-stack"
+                        }
+                    ],
+                    "icon": "mdi:home-assistant",
+                    "path": "default_view",
+                    "title": "Home"
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "columns": 9,
+                            "entities": [
+                                {
+                                    "double_click_action": {
+                                        "action": "none"
+                                    },
+                                    "entity": "input_boolean.livingroom_media_state_power",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "script.livingroom_media_power"
+                                    }
+                                },
+                                {
+                                    "double_click_action": {
+                                        "action": "none"
+                                    },
+                                    "entity": "input_boolean.livingroom_media_state_plex",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "script.media_activity",
+                                        "service_data": {
+                                            "media_activity": "plex"
+                                        }
+                                    }
+                                },
+                                {
+                                    "double_click_action": {
+                                        "action": "none"
+                                    },
+                                    "entity": "input_boolean.livingroom_media_state_philo",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "script.media_activity",
+                                        "service_data": {
+                                            "media_activity": "philo"
+                                        }
+                                    }
+                                },
+                                {
+                                    "double_click_action": {
+                                        "action": "none"
+                                    },
+                                    "entity": "input_boolean.livingroom_media_state_netflix",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "script.media_activity",
+                                        "service_data": {
+                                            "media_activity": "netflix"
+                                        }
+                                    }
+                                },
+                                {
+                                    "double_click_action": {
+                                        "action": "none"
+                                    },
+                                    "entity": "input_boolean.livingroom_media_state_youtube",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "name": "YT",
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "script.media_activity",
+                                        "service_data": {
+                                            "media_activity": "youtube"
+                                        }
+                                    }
+                                },
+                                {
+                                    "double_click_action": {
+                                        "action": "none"
+                                    },
+                                    "entity": "input_boolean.livingroom_media_state_amazon",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "script.media_activity",
+                                        "service_data": {
+                                            "media_activity": "amazon"
+                                        }
+                                    }
+                                },
+                                {
+                                    "double_click_action": {
+                                        "action": "none"
+                                    },
+                                    "entity": "input_boolean.livingroom_media_state_hulu",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "script.media_activity",
+                                        "service_data": {
+                                            "media_activity": "hulu"
+                                        }
+                                    }
+                                },
+                                {
+                                    "double_click_action": {
+                                        "action": "none"
+                                    },
+                                    "entity": "input_boolean.livingroom_media_state_spotify",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "script.media_activity",
+                                        "service_data": {
+                                            "media_activity": "spotify"
+                                        }
+                                    }
+                                },
+                                {
+                                    "double_click_action": {
+                                        "action": "none"
+                                    },
+                                    "entity": "input_boolean.livingroom_media_state_records",
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "tap_action": {
+                                        "action": "call-service",
+                                        "service": "script.media_activity",
+                                        "service_data": {
+                                            "media_activity": "records"
+                                        }
+                                    }
+                                }
+                            ],
+                            "show_icon": true,
+                            "show_name": true,
+                            "show_state": false,
+                            "title": "Living Room Media Center",
+                            "type": "glance"
+                        },
+                        {
+                            "card": {
+                                "cards": [
+                                    {
+                                        "cards": [
+                                            {
+                                                "entity": "script.livingroom_media_power",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:power-plug-off",
+                                                "name": "Off",
+                                                "show_icon": true,
+                                                "show_name": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_power",
+                                                    "service_data": {
+                                                        "activity": -1,
+                                                        "entity_id": "remote.livingroom"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:arrow-up-bold",
+                                                "name": "Up",
+                                                "show_icon": true,
+                                                "show_name": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "up"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:rotate-left",
+                                                "name": "Back",
+                                                "show_icon": true,
+                                                "show_name": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "back"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:chevron-double-up",
+                                                "name": "Ch. Up",
+                                                "show_icon": true,
+                                                "show_name": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "pageup"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            }
+                                        ],
+                                        "type": "horizontal-stack"
+                                    },
+                                    {
+                                        "cards": [
+                                            {
+                                                "double_tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "left",
+                                                        "increment": 3
+                                                    }
+                                                },
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "left",
+                                                        "increment": 5
+                                                    }
+                                                },
+                                                "icon": "mdi:arrow-left-bold",
+                                                "name": "Left",
+                                                "show_icon": true,
+                                                "show_name": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "left"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:check-circle",
+                                                "name": "Confirm",
+                                                "show_icon": true,
+                                                "show_name": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "confirm"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "double_tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "right",
+                                                        "increment": 3
+                                                    }
+                                                },
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "right",
+                                                        "increment": 5
+                                                    }
+                                                },
+                                                "icon": "mdi:arrow-right-bold",
+                                                "name": "Right",
+                                                "show_icon": true,
+                                                "show_name": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "right"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:chevron-double-down",
+                                                "name": "Ch. Down",
+                                                "show_icon": true,
+                                                "show_name": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "pagedown"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            }
+                                        ],
+                                        "type": "horizontal-stack"
+                                    },
+                                    {
+                                        "cards": [
+                                            {
+                                                "entity": "script.media_skip_back",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:backburger",
+                                                "name": "Skip Back",
+                                                "show_icon": true,
+                                                "show_name": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.media_skip_back"
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:arrow-down-bold",
+                                                "name": "Down",
+                                                "show_icon": true,
+                                                "show_name": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "down"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:asterisk",
+                                                "name": "Options",
+                                                "show_icon": true,
+                                                "show_name": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "options"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:information-outline",
+                                                "name": "Info",
+                                                "show_icon": true,
+                                                "show_name": true,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "info"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            }
+                                        ],
+                                        "type": "horizontal-stack"
+                                    },
+                                    {
+                                        "cards": [
+                                            {
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:pause",
+                                                "show_icon": true,
+                                                "show_name": false,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "pause"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:play",
+                                                "show_icon": true,
+                                                "show_name": false,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "play"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "entity": "script.livingroom_media_command",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:stop",
+                                                "show_icon": true,
+                                                "show_name": false,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_command",
+                                                    "service_data": {
+                                                        "command": "stop"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "entity": "script.livingroom_media_volume",
+                                                "hold_action": {
+                                                    "action": "none"
+                                                },
+                                                "icon": "mdi:account-voice",
+                                                "show_icon": true,
+                                                "show_name": false,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_volume",
+                                                    "service_data": {
+                                                        "command": "voice"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "double_tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_volume",
+                                                    "service_data": {
+                                                        "command": "down",
+                                                        "increment": 3
+                                                    }
+                                                },
+                                                "entity": "script.livingroom_media_volume",
+                                                "hold_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_volume",
+                                                    "service_data": {
+                                                        "command": "down",
+                                                        "increment": 5
+                                                    }
+                                                },
+                                                "icon": "mdi:volume-minus",
+                                                "show_icon": true,
+                                                "show_name": false,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_volume",
+                                                    "service_data": {
+                                                        "command": "down"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            },
+                                            {
+                                                "double_tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_volume",
+                                                    "service_data": {
+                                                        "command": "up",
+                                                        "increment": 3
+                                                    }
+                                                },
+                                                "entity": "script.livingroom_media_volume",
+                                                "hold_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_volume",
+                                                    "service_data": {
+                                                        "command": "up",
+                                                        "increment": 5
+                                                    }
+                                                },
+                                                "icon": "mdi:volume-plus",
+                                                "show_icon": true,
+                                                "show_name": false,
+                                                "tap_action": {
+                                                    "action": "call-service",
+                                                    "service": "script.livingroom_media_volume",
+                                                    "service_data": {
+                                                        "command": "up"
+                                                    }
+                                                },
+                                                "type": "button"
+                                            }
+                                        ],
+                                        "type": "horizontal-stack"
+                                    },
+                                    {
+                                        "entities": [
+                                            {
+                                                "action_name": "toggle",
+                                                "icon": "mdi:speaker",
+                                                "name": "Sound Bar Power",
+                                                "service": "remote.send_command",
+                                                "service_data": {
+                                                    "command": "PowerToggle",
+                                                    "device": 60888940,
+                                                    "entity_id": "remote.livingroom",
+                                                    "num_repeats": 1
+                                                },
+                                                "type": "call-service"
+                                            },
+                                            {
+                                                "action_name": "home",
+                                                "entity": "script.livingroom_media_command",
+                                                "icon": "mdi:home",
+                                                "name": "Home",
+                                                "service": "script.livingroom_media_command",
+                                                "service_data": {
+                                                    "command": "home"
+                                                }
+                                            },
+                                            {
+                                                "action_name": "fix",
+                                                "entity": "script.livingroom_media_command",
+                                                "icon": "mdi:video-input-hdmi",
+                                                "name": "TV Input",
+                                                "service": "script.livingroom_media_command",
+                                                "service_data": {
+                                                    "command": "fixinput"
+                                                }
+                                            },
+                                            {
+                                                "action_name": "exit",
+                                                "entity": "script.livingroom_media_command",
+                                                "icon": "mdi:exit-run",
+                                                "name": "Exit",
+                                                "service": "script.livingroom_media_command",
+                                                "service_data": {
+                                                    "command": "exit"
+                                                }
+                                            },
+                                            {
+                                                "action_name": "<<",
+                                                "entity": "script.livingroom_media_command",
+                                                "icon": "mdi:rewind",
+                                                "name": "Rewind",
+                                                "service": "script.livingroom_media_command",
+                                                "service_data": {
+                                                    "command": "rewind"
+                                                }
+                                            },
+                                            {
+                                                "action_name": ">>",
+                                                "entity": "script.livingroom_media_command",
+                                                "icon": "mdi:fast-forward",
+                                                "name": "Fast Forward",
+                                                "service": "script.livingroom_media_command",
+                                                "service_data": {
+                                                    "command": "fast_forward"
+                                                }
+                                            },
+                                            {
+                                                "action_name": ">> 5min",
+                                                "action": "call-service",
+                                                "name": "Critical Role",
+                                                "entity": "script.livingroom_media_command",
+                                                "icon": "mdi:sword",
+                                                "service_data": {
+                                                    "command": "left",
+                                                    "increment": 80
+                                                }
+                                            }
+                                        ],
+                                        "show_header_toggle": false,
+                                        "type": "entities"
+                                    }
+                                ],
+                                "type": "vertical-stack"
+                            },
+                            "conditions": [
+                                {
+                                    "entity": "sensor.livingroom_media_device",
+                                    "state_not": "off"
+                                }
+                            ],
+                            "type": "conditional"
+                        }
+                    ],
+                    "icon": "mdi:youtube-tv",
+                    "path": "media",
+                    "title": ""
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.netatmo_ran_indoor_temperature",
+                                    "icon": "mdi:thermometer",
+                                    "name": "Living Room Temperature"
+                                },
+                                {
+                                    "entity": "sensor.cottage_temperature",
+                                    "icon": "mdi:thermometer",
+                                    "name": "Hallway Temperature"
+                                },
+                                {
+                                    "entity": "sensor.netatmo_ran_indoor_humidity",
+                                    "icon": "mdi:water-percent",
+                                    "name": "Living Room Humidity"
+                                },
+                                {
+                                    "entity": "sensor.cottage_humidity",
+                                    "icon": "mdi:water-percent",
+                                    "name": "Hallway Humidity"
+                                },
+                                {
+                                    "entity": "sensor.netatmo_ran_indoor_pressure",
+                                    "icon": "mdi:gauge",
+                                    "name": "Barametric Pressure"
+                                },
+                                {
+                                    "entity": "sensor.netatmo_ran_indoor_co2",
+                                    "icon": "mdi:periodic-table-co2",
+                                    "name": "CO2 PPM"
+                                },
+                                {
+                                    "entity": "sensor.netatmo_ran_indoor_noise",
+                                    "icon": "mdi:ear-hearing",
+                                    "name": "Noise Level"
+                                }
+                            ],
+                            "title": "Interior",
+                            "type": "entities"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.netatmo_ran_indoor_temperature",
+                                            "name": "In"
+                                        },
+                                        {
+                                            "entity": "sensor.outdoor_temperature",
+                                            "name": "Out"
+                                        },
+                                        {
+                                            "color": "gray",
+                                            "entity": "sensor.convert_night_binary",
+                                            "name": "Night",
+                                            "show_indicator": false,
+                                            "show_legend": false,
+                                            "show_line": false,
+                                            "show_points": false,
+                                            "y_axis": "secondary"
+                                        }
+                                    ],
+                                    "height": 180,
+                                    "hours_to_show": 18,
+                                    "line_width": 5,
+                                    "name": "Temperatures",
+                                    "points_per_hour": 1,
+                                    "type": "custom:mini-graph-card"
+                                },
+                                {
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.netatmo_ran_indoor_humidity",
+                                            "name": "In"
+                                        },
+                                        {
+                                            "entity": "sensor.outdoor_humidity",
+                                            "name": "Out"
+                                        },
+                                        {
+                                            "color": "gray",
+                                            "entity": "sensor.convert_night_binary",
+                                            "name": "Night",
+                                            "show_indicator": false,
+                                            "show_legend": false,
+                                            "show_line": false,
+                                            "show_points": false,
+                                            "y_axis": "secondary"
+                                        }
+                                    ],
+                                    "height": 180,
+                                    "hours_to_show": 18,
+                                    "line_width": 5,
+                                    "name": "Humidity",
+                                    "points_per_hour": 1,
+                                    "type": "custom:mini-graph-card"
+                                }
+                            ],
+                            "type": "horizontal-stack"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "sensor.outdoor_temperature"
+                                },
+                                {
+                                    "entity": "sensor.outdoor_humidity"
+                                },
+                                {
+                                    "entity": "sun.sun"
+                                },
+                                {
+                                    "entity": "sensor.moon"
+                                }
+                            ],
+                            "title": "Outdoor",
+                            "type": "entities"
+                        },
+                        {
+                            "aspect_ratio": "100%",
+                            "type": "iframe",
+                            "url": "  https://embed.windy.com/embed2.html?lat=43.926&lon=-123.085&zoom=8&level=surface&overlay=rain&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=43.882&detailLon=-121.926&metricWind=default&metricTemp=%C2%B0F&radarRange=-1"
+                        }
+                    ],
+                    "icon": "mdi:weather-partly-cloudy",
+                    "path": "conditions",
+                    "title": "Conditions"
+                },
+                {
+                    "title": "Workshop",
+                    "path": "workshop",
+                    "icon": "mdi:garage-variant",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "custom:threedy-card",
+                            "base_entity": "sensor.octoprint",
+                            "monitored": [
+                                "Status",
+                                "ETA",
+                                "Elapsed",
+                                "Hotend",
+                                "Bed",
+                                "Remaining"
+                            ],
+                            "printer_type": "I3",
+                            "name": "MK3s",
+                            "scale": 1,
+                            "round_time": true,
+                            "round_temperature": true,
+                            "temperature_unit": "C",
+                            "use_24hr": false,
+                            "camera_entity": "camera.octoprint_1"
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "switch.derek_couch_laptop"
+                                },
+                                {
+                                    "entity": "switch.derek_couch_lamp"
+                                },
+                                {
+                                    "entity": "switch.derek_couch_miscellaneous"
+                                }
+                            ],
+                            "title": "Printer Power",
+                            "show_header_toggle": false,
+                            "state_color": true
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "sensor.garage_smoke_detector_status"
+                                },
+                                {
+                                    "entity": "sensor.garage_smoke_detector_battery_level"
+                                }
+                            ],
+                            "title": "Safety"
+                        },
+                        {
+                            "aspect_ratio": "50%",
+                            "camera_image": "camera.octoprint_1",
+                            "entity": "sensor.octoprint_current_state",
+                            "hold_action": {
+                                "action": "none"
+                            },
+                            "name": "Octoprint",
+                            "type": "picture-entity",
+                            "camera_view": "live"
+                        },
+                        {
+                            "type": "picture-entity",
+                            "entity": "sensor.octoprint_job_percentage",
+                            "camera_image": "camera.octoprint_2",
+                            "aspect_ratio": "4:3",
+                            "hold_action": {
+                                "action": "none"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "cards": [
+                                {
+                                    "aspect_ratio": "57%",
+                                    "camera_image": "camera.heimdall_pitz_1",
+                                    "entities": [],
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "image": "https://demo.home-assistant.io/stub_config/kitchen.png",
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "title": "Garage 1",
+                                    "type": "picture-glance"
+                                },
+                                {
+                                    "aspect_ratio": "57%",
+                                    "camera_image": "camera.heimdall_pitz_2",
+                                    "entities": [],
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "image": "https://demo.home-assistant.io/stub_config/kitchen.png",
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "title": "Garage 2",
+                                    "type": "picture-glance"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "aspect_ratio": "0%",
+                                    "camera_image": "camera.downtown_eugene",
+                                    "entities": [
+                                        {
+                                            "entity": "sensor.outdoor_temperature"
+                                        }
+                                    ],
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "title": "Downtown Eugene",
+                                    "type": "picture-glance"
+                                },
+                                {
+                                    "aspect_ratio": "0%",
+                                    "camera_image": "camera.beltline_at_river_rd",
+                                    "entities": [],
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "tap_action": {
+                                        "action": "none"
+                                    },
+                                    "type": "picture-glance"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        },
+                        {
+                            "cards": [
+                                {
+                                    "aspect_ratio": "57%",
+                                    "camera_image": "camera.front_door",
+                                    "entities": [],
+                                    "hold_action": {
+                                        "action": "none"
+                                    },
+                                    "image": "https://demo.home-assistant.io/stub_config/kitchen.png",
+                                    "title": "Front Door",
+                                    "type": "picture-glance"
+                                }
+                            ],
+                            "type": "vertical-stack"
+                        }
+                    ],
+                    "icon": "mdi:cctv",
+                    "path": "camera",
+                    "title": ""
+                }
+            ]
+        }
+    }
+}

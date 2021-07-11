@@ -1,0 +1,47 @@
+- id: '1588541723082'
+  name: Rise and Shine
+  entities:
+    light.love_seat_middle:
+      brightness: 255
+      state: 'on'
+    light.love_seat_up:
+      brightness: 255
+      state: 'on'
+    light.the_sink_hole:
+      brightness: 255
+      state: 'on'
+    switch.the_sparkle:
+      state: 'on'
+    switch.garage_heater:
+      state: 'on'
+- id: '1588745863285'
+  name: Living Room Bedtime
+  entities:
+    light.love_seat_middle:
+      state: 'off'
+    light.love_seat_up:
+      state: 'off'
+    switch.the_sparkle:
+      friendly_name: The Sparkle
+      state: 'off'
+    remote.livingroom:
+      state: 'off'
+    switch.garage_heater:
+      state: 'off'
+- id: '1588745863286'
+  name: Kitchen Bedtime
+  entities:
+    light.the_sink_hole:
+      brightness_pct: 2
+      state: 'on'
+- id: '1588813331379'
+  name: Early Morning
+  entities:
+    light.love_seat_up:
+      brightness: 125
+      state: 'on'
+    light.the_sink_hole:
+      brightness: 255
+      state: 'on'
+    remote.livingroom:
+      state: 'on'

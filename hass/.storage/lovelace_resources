@@ -1,0 +1,23 @@
+{
+    "version": 1,
+    "key": "lovelace_resources",
+    "data": {
+        "items": [
+            {
+                "id": "d2533ca29b034e429161be94dd0bbefb",
+                "type": "module",
+                "url": "/local/mini-graph-card-bundle.js"
+            },
+            {
+                "id": "3fc7307cc8704fb38c6ef4876c8cea51",
+                "type": "module",
+                "url": "/local/simple-thermostat.js"
+            },
+            {
+                "url": "/local/threedy-card.js",
+                "type": "module",
+                "id": "352d86b68c344b0292ea3e6d7ca2d9e2"
+            }
+        ]
+    }
+}

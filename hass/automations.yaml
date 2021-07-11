@@ -1,0 +1,259 @@
+- id: '1588558384536'
+  alias: Pre-Dusk Tasks
+  description: Turn on lights just before sunset.
+  trigger:
+  - event: sunset
+    offset: -00:30:00
+    platform: sun
+  condition: []
+  action:
+  - scene: scene.rise_and_shine
+  - device_id: b3116b964cca4372905e7e25cea04955
+    domain: switch
+    entity_id: switch.back_porch_switch
+    type: turn_on
+  - type: turn_on
+    device_id: 31ceaab4e8851cd4375d684ad211e3b2
+    entity_id: switch.derek_bedroom_lamp
+    domain: switch
+  mode: single
+- id: update_media_input_select
+  alias: Update the Media Input Select
+  trigger:
+  - platform: state
+    entity_id: sensor.livingroom_remote_state
+  action:
+  - service: input_select.select_option
+    data_template:
+      entity_id: input_select.livingroom_media_switch
+      option: "{%- if is_state(\"sensor.livingroom_remote_state\", \"HTPC\") -%}\n\
+        \  HTPC\n{%- elif is_state(\"sensor.livingroom_remote_state\", \"Hulu\") -%}\n\
+        \  Hulu\n{%- elif is_state(\"sensor.livingroom_remote_state\", \"Netflix\"\
+        ) -%}\n  Netflix\n{%- elif is_state(\"sensor.livingroom_remote_state\", \"\
+        Youtube\") -%}\n  Youtube\n{%- elif is_state(\"sensor.livingroom_remote_state\"\
+        , \"Amazon\") -%}\n  Amazon\n{%- elif is_state(\"sensor.livingroom_remote_state\"\
+        , \"Plex\") -%}\n  Plex\n{%- elif is_state(\"sensor.livingroom_remote_state\"\
+        , \"Philo\") -%}\n  Philo\n{%- elif is_state(\"sensor.livingroom_remote_state\"\
+        , \"Play Switch\") -%}\n  Nintendo Switch\n{%- elif is_state(\"sensor.livingroom_remote_state\"\
+        , \"OTA\") -%}\n  Over the Air\n{%- elif is_state(\"sensor.livingroom_remote_state\"\
+        , \"Spotify\") -%}\n  Spotify\n{%- elif is_state(\"sensor.livingroom_remote_state\"\
+        , \"Listen to Records\") -%}\n  Listen To Records\n{%- else -%}\n  Off\n{%-\
+        \ endif -%}\n"
+  - service: script.livingroom_media_boolean_setter
+    data_template:
+      media_activity: "{%- if is_state(\"sensor.livingroom_remote_state\", \"HTPC\"\
+        ) -%}\n  htpc\n{%- elif is_state(\"sensor.livingroom_remote_state\", \"Hulu\"\
+        ) -%}\n  hulu\n{%- elif is_state(\"sensor.livingroom_remote_state\", \"Netflix\"\
+        ) -%}\n  netflix\n{%- elif is_state(\"sensor.livingroom_remote_state\", \"\
+        Youtube\") -%}\n  youtube\n{%- elif is_state(\"sensor.livingroom_remote_state\"\
+        , \"Amazon\") -%}\n  amazon\n{%- elif is_state(\"sensor.livingroom_remote_state\"\
+        , \"Plex\") -%}\n  plex\n{%- elif is_state(\"sensor.livingroom_remote_state\"\
+        , \"Philo\") -%}\n  philo\n{%- elif is_state(\"sensor.livingroom_remote_state\"\
+        , \"Spotify\") -%}\n  spotify\n{%- elif is_state(\"sensor.livingroom_remote_state\"\
+        , \"Listen to Records\") -%}\n  records\n{%- else -%}\n  off\n{%- endif -%}\n"
+- id: media_input_select_change_handler
+  alias: Change Activity Based on Input Select
+  trigger:
+  - platform: state
+    entity_id: input_select.livingroom_media_switch
+  action:
+  - service: remote.turn_on
+    data_template:
+      entity_id: remote.livingroom
+      activity: "{%- if is_state(\"input_select.livingroom_media_switch\", \"HTPC\"\
+        ) -%}\n  31479535\n{%- elif is_state(\"input_select.livingroom_media_switch\"\
+        , \"Hulu\") -%}\n  42299847\n{%- elif is_state(\"input_select.livingroom_media_switch\"\
+        , \"Netflix\") -%}\n  42299623\n{%- elif is_state(\"input_select.livingroom_media_switch\"\
+        , \"Youtube\") -%}\n  42299799\n{%- elif is_state(\"input_select.livingroom_media_switch\"\
+        , \"Amazon\") -%}\n  42299705\n{%- elif is_state(\"input_select.livingroom_media_switch\"\
+        , \"Plex\") -%}\n  42299678\n{%- elif is_state(\"input_select.livingroom_media_switch\"\
+        , \"Philo\") -%}\n  42299732\n{%- elif is_state(\"input_select.livingroom_media_switch\"\
+        , \"Spotify\") -%}\n  43030123\n{%- elif is_state(\"input_select.livingroom_media_switch\"\
+        , \"Nintendo Switch\") -%}\n  31480190\n{%- elif is_state(\"input_select.livingroom_media_switch\"\
+        , \"Over the Air\") -%}\n  31480260\n{%- elif is_state(\"input_select.livingroom_media_switch\"\
+        , \"Listen To Records\") -%}\n  38156985\n{%- else -%}\n  -1\n{%- endif -%}\n"
+- id: '1588912531805'
+  alias: Back Porch Off
+  description: Turn off the back porch light automatically.
+  trigger:
+  - at: '21:30:00'
+    platform: time
+  condition: []
+  action:
+  - device_id: b3116b964cca4372905e7e25cea04955
+    domain: switch
+    entity_id: switch.back_porch_switch
+    type: turn_off
+- id: '1591246421706'
+  alias: Print Finish
+  description: Notify Derek when a print finishes
+  trigger:
+  - entity_id: sensor.octoprint_current_state
+    from: Printing
+    platform: state
+    to: Operational
+  condition: []
+  action:
+  - service: camera.snapshot
+    data:
+      filename: /tmp/octoprint_1.jpg
+    entity_id: camera.octoprint_1
+  - delay: 00:00:5
+  - data:
+      message: Print Finished
+      data:
+        photo:
+        - file: /tmp/octoprint_1.jpg
+          caption: 3D printing complete
+    service: notify.janet_reports
+  mode: single
+- id: '1591422068024'
+  alias: Turn off garage light
+  description: ''
+  trigger:
+  - at: 00:01
+    platform: time
+  condition: []
+  action:
+  - data: {}
+    entity_id: switch.couch
+    service: switch.turn_off
+- id: '1596227512232'
+  alias: High Temp Setter
+  description: Used to track the highest reported temperature since noon.
+  trigger:
+  - minutes: /5
+    platform: time_pattern
+  condition:
+  - condition: template
+    value_template: '{{ states(''sensor.outdoor_temperature'') > states(''input_number.tracked_high_temperature'')
+      }}'
+  action:
+  - data_template:
+      entity_id: input_number.tracked_high_temperature
+      value: '{{ states(''sensor.outdoor_temperature'') }}'
+    service: input_number.set_value
+- id: '1596231238769'
+  alias: Bedroom AC
+  description: Automatically turn on the bedroom AC when the daytime high exceeds
+    a set value
+  trigger:
+  - at: '21:30:00'
+    platform: time
+  condition:
+  - condition: template
+    value_template: '{{ states("input_number.tracked_high_temperature") > states("input_number.bedroom_ac_trigger_temp")
+      }}'
+  action:
+  - data: {}
+    service: script.bedtime_ac_precondition
+  - data:
+      message: AC script triggered.
+      title: HA Automation
+    service: notify.janet_reports
+  mode: single
+- id: '1607836912695'
+  alias: Printer Power Safety
+  description: Make sure the garage heater is off when printer heaters are running
+  trigger:
+  - platform: state
+    entity_id: sensor.octoprint_current_state
+    from: Unknown
+  condition: []
+  action:
+  - type: turn_off
+    device_id: c056e745697341c3aae2d31a71809b66
+    entity_id: switch.garage_heater
+    domain: switch
+  mode: single
+- id: '1607838447576'
+  alias: Doorbell ring notification
+  description: Grap a photo of the doordell and sendto telegram
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_ding
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 20
+      milliseconds: 0
+  - service: camera.snapshot
+    data:
+      filename: /tmp/frontdoording_1.jpg
+    target:
+      entity_id: camera.front_door
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: ( as_timestamp(now()) - as_timestamp(state_attr('automation.door_motion_notification,
+          'last_triggered')) |int(0) ) < 30
+      sequence:
+      - service: notify.janet_reports
+        data:
+          message: Doorbell ring
+          data:
+            photo:
+            - file: /tmp/frontdoording_1.jpg
+              caption: Someone rang the door bell.
+    default:
+    - service: notify.janet_reports
+      data:
+        message: The doorbell rang. Probably by the same person or thing that triggered
+          the last motion alert.
+  mode: single
+- id: '1617483716267'
+  alias: Door Motion Notification
+  description: Send a telegram message when there's motion at the front door
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_motion
+    to: 'on'
+    from: 'off'
+  condition: []
+  action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - service: camera.snapshot
+    data:
+      filename: /tmp/frontdoormotion_1.jpg
+    target:
+      entity_id:
+      - camera.front_door
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 4
+      milliseconds: 0
+  - service: notify.janet_reports
+    data:
+      data:
+        photo:
+        - file: /tmp/frontdoormotion_1.jpg
+          caption: There was motion at the door
+      message: Motion detected at the front door.
+  mode: single
+- id: '1617939769335'
+  alias: run rise and shine two hours before sunset
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: -02:00:00
+  - platform: time
+    at: '16:00:00'
+  condition: []
+  action:
+  - scene: scene.rise_and_shine
+  mode: single

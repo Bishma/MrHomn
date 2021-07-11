@@ -1,0 +1,36 @@
+{
+    "data": {
+        "config": {
+            "views": [
+                {
+                    "badges": [],
+                    "cards": [
+                        {
+                            "entities": [
+                                {
+                                    "entity": "input_boolean.fan_out"
+                                }
+                            ],
+                            "title": "UI Settings",
+                            "type": "entities"
+                        },
+                        {
+                            "entities": [
+                                {
+                                    "entity": "input_number.bedroom_ac_trigger_temp"
+                                },
+                                {
+                                    "entity": "input_select.occupation_override"
+                                }
+                            ],
+                            "title": "Automation Settings",
+                            "type": "entities"
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "key": "lovelace.settings_status",
+    "version": 1
+}

@@ -1,0 +1,291 @@
+bedtime_ac_precondition:
+  alias: Bedroom AC Auto Econ
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.bedroom_ir_remote
+      command:
+      - b64:JgBgAAABJJUTEREUEBQTNxMRExIQFBEUEzYTERE5ExEROBM3EzYQORE4ERQQFBEUEDkRFBAUERQQFBE4EjYTNhIUETkQORA5EAAFOQABIk0RAAxBAAEiShIADEEAASFLEwANBQAAAAAAAAAA
+      - b64:JgBQAAABJ5QRExEUEBUROBEUEBQRFBETETkRExI4ERMRORE4ETkROBEUETgRFBETERQRExEUERQQOREUETgROBI4EzYSOBE4EQAFPAABI0wRAA0FAAAAAAAAAAA=
+bedtime_ac_power:
+  alias: Bedroom AC Power Toggle
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.bedroom_ir_remote
+      command:
+      - b64:JgBYAAABI5YQFBEUEBUQORAVEBQQFRAUETkQFBE5EBQRORA5EDkRORA5ERQQFRAUEDkRFBAVEBQRFBA5ETkQOREUEDkRORA5EAAFPQABJUoQAAxLAAEhTBEADQU=
+bedtime_ac_temp_timer_up:
+  alias: Bedroom AC Temp/Timer Up
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.bedroom_ir_remote
+      command:
+      - b64:JgBQAAABJZMRExMSEBUSNxISEhMRFBISEzcRExE5ERMRORE4ETgSOBETETkROBE4EhMRFBAUERQROBEUEBQRFBA5EjgROBE4EgAFOwABIkwUAA0FAAAAAAAAAAA=
+bedtime_ac_temp_timer_down:
+  alias: Bedroom AC Temp/Timer Down
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.bedroom_ir_remote
+      command:
+      - b64:JgBQAAABI5YRExITEBQSOBETEhMRFBETEjgRExE5ERMROBE5ETgSOBE4ERQROBE4EhMRFBETERQRExI4ERMSExA5EjgROBE4EgAFOwABIk0RAA0FAAAAAAAAAAA=
+bedtime_ac_fan_faster:
+  alias: Bedroom AC Fan Faster
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.bedroom_ir_remote
+      command:
+      - b64:JgBQAAABJJQQFRAUERQQOREUERMRFBETETkRExE5ERMROBI4EjgROBE4EhMQFRAUERQQFBEUEBUQFBE5ETgROBI4ETgSOBE4EQAFOwABI0wSAA0FAAAAAAAAAAA=
+bedtime_ac_fan_slower:
+  alias: Bedroom AC Fan Slower
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.bedroom_ir_remote
+      command:
+      - b64:gBQAAABJZURExEUEBQRORETERQQFBEUEDkSExA5EhMQORM3ETgSOBMRERQQORITEBQUERAVExERORM2EBUQORM2EzcTNhM2EgAFOwABIk0TAA0FAAAAAAAAAAA=
+bedtime_ac_cool:
+  alias: Bedroom AC Cool
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.bedroom_ir_remote
+      command:
+      - b64:JgBQAAABIpURExEUERQROBEUERMSExETEjgRExI4ERMSOBE4EjgROBE4EhMRFBE4ERQRExITERMSExE4EjgRExE5ETgSOBA5EQAFOwABI00RAA0FAAAAAAAAAAA=
+bedtime_ac_energy_saver:
+  alias: Bedroom AC Energy Saver
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.bedroom_ir_remote
+      command:
+      - b64:JgBQAAABJ5QRExEUEBUROBEUEBQRFBETETkRExI4ERMRORE4ETkROBEUETgRFBETERQRExEUERQQOREUETgROBI4EzYSOBE4EQAFPAABI0wRAA0FAAAAAAAAAAA=
+bedtime_ac_fan_only:
+  alias: Bedroom AC Fan Only
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.bedroom_ir_remote
+      command:
+      - b64:JgBQAAABJJQSExETERQROBITERQRExEUEDkSExE4EhMQORI4ETgROBI4ETgSOBETEhMRExEUERQRExEUERMRORE4EjgROBE4EQAFPAABIk0RAA0FAAAAAAAAAAA=
+bedtime_ac_auto_fan:
+  alias: Bedroom AC Auto Fan
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.bedroom_ir_remote
+      command:
+      - b64:JgBYAAABJpMTEhMSEhITNhMSExISEhMSEzYTEhM2ExITNhM3EjcTNhM3EzYTNxI3ExISEhMSExISEhMSEhITEhM2EzcSNxM2EwAFOgABJEsTAAxHAAEkSRMADQU=
+bedtime_ac_timer:
+  alias: Bedroom AC Timer
+  sequence:
+  - service: remote.send_command
+    data:
+      entity_id: remote.bedroom_ir_remote
+      command:
+      - b64:JgBQAAABJpQSExEUEBQSOBETEhMRExEUETgSExE4EhMRORA5EDkSOBAUEjgRNxIUEBQRFBEUERMRORETEhMROBI4ETgSOBE4EQAFPAABIk0RAA0FAAAAAAAAAAA=
+livingroom_fan_on:
+  alias: Living Room Fan Power
+  sequence:
+  - service: remote.send_command
+    entity_id: remote.livingroom
+    data:
+      device: 55184762
+      command: PowerToggle
+livingroom_fan_osc:
+  alias: Living Room Fan Oscillate
+  sequence:
+  - service: remote.send_command
+    entity_id: remote.livingroom
+    data:
+      device: 55184762
+      command: Oscillation
+livingroom_fan_speed:
+  alias: Living Room Fan Speed
+  sequence:
+  - service: remote.send_command
+    entity_id: remote.livingroom
+    data:
+      device: 55184762
+      command: FanSpeed
+livingroom_media_boolean_setter:
+  alias: Set the media center input boolians
+  sequence:
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.livingroom_media_state_htpc
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.livingroom_media_state_amazon
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.livingroom_media_state_hulu
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.livingroom_media_state_netflix
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.livingroom_media_state_plex
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.livingroom_media_state_power
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.livingroom_media_state_records
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.livingroom_media_state_philo
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.livingroom_media_state_spotify
+  - service: input_boolean.turn_off
+    entity_id: input_boolean.livingroom_media_state_youtube
+  - service: input_boolean.turn_on
+    data_template:
+      entity_id: input_boolean.livingroom_media_state_{{ media_activity }}
+media_activity:
+  alias: Switch Activity
+  sequence:
+  - service: remote.turn_on
+    entity_id: remote.livingroom
+    data_template:
+      activity: "{%- if media_activity|lower == \"htpc\" or media_activity|lower ==\
+        \ \"cody\" -%}\n  31479535\n{%- elif media_activity|lower == \"hulu\" -%}\n\
+        \  42299847\n{%- elif media_activity|lower == \"philo\" -%}\n  42299732\n\
+        {%- elif media_activity|lower == \"netflix\" -%}\n  42299623\n{%- elif media_activity|lower\
+        \ == \"youtube\" -%}\n  42299799\n{%- elif media_activity|lower == \"amazon\"\
+        \ -%}\n  42299705\n{%- elif media_activity|lower == \"plex\" -%}\n  42299678\n\
+        {%- elif media_activity|lower == \"switch\" -%}\n  31480190\n{%- elif media_activity|lower\
+        \ == \"spotify\" -%}\n  43030123\n{%- elif media_activity|lower == \"over_the_air\"\
+        \ -%}\n  31480260\n{%- elif media_activity|lower == \"music\" -%}\n  38156985\n\
+        {%- else -%}\n  31571897\n{% endif %}\n"
+livingroom_media_power:
+  alias: Living Room Media Center Power Toggle
+  sequence:
+  - service: remote.turn_on
+    entity_id: remote.livingroom
+    data_template:
+      activity: "{%- if states(\"sensor.livingroom_media_device\") != \"off\" -%}\n\
+        \  -1\n{%- else -%}\n  42299678\n{%- endif -%}\n"
+livingroom_media_command:
+  alias: Living Room Media Center Command Interface
+  sequence:
+  - service: remote.send_command
+    entity_id: remote.livingroom
+    data_template:
+      device: '{{ states("sensor.livingroom_media_device_id") }}
+
+        '
+      command: "{%- if command == \"back\" -%}\n  Back\n{%- elif command == \"confirm\"\
+        \ -%}\n  {%- if states(\"sensor.livingroom_media_device\") == \"htpc\" -%}\n\
+        \    Enter\n  {%- else -%}\n    OK\n  {%- endif -%}\n{%- elif command == \"\
+        down\" -%}\n  DirectionDown\n{%- elif command == \"exit\" -%}\n  Exit\n{%-\
+        \ elif command == \"fast_forward\" -%}\n  {% if states(\"sensor.livingroom_remote_state\"\
+        ) == \"HTPC\"\n    or states(\"sensor.livingroom_remote_state\") == \"Philo\"\
+        \n    or  states(\"sensor.livingroom_remote_state\") == \"Hulu\"\n    or \
+        \ states(\"sensor.livingroom_remote_state\") == \"Plex\"\n    or states(\"\
+        sensor.livingroom_remote_state\") == \"Netflix\" %}\n    DirectionRight\n\
+        \  {% elif states(\"sensor.livingroom_remote_state\") == \"Youtube\" %}\n\
+        \    FastForward\n  {% endif %}\n{%- elif command == \"fixinput\" -%}\n  {%-\
+        \ if states(\"sensor.livingroom_media_device\") == \"htpc\" -%}\n    InputHdmi1\n\
+        \  {%- else -%}\n    InputHdmi3\n  {%- endif -%}\n{%- elif command == \"home\"\
+        \ -%}\n  Home\n{%- elif command == \"info\" -%}\n  {%- if states(\"sensor.livingroom_media_device\"\
+        ) == \"htpc\" -%}\n    i.\n  {%- else -%}\n    Info\n  {%- endif -%}\n{%-\
+        \ elif command == \"left\" -%}\n  DirectionLeft\n{%- elif command == \"options\"\
+        \ -%}\n  {%- if states(\"sensor.livingroom_media_device\") == \"htpc\" -%}\n\
+        \    c.\n  {%- else -%}\n    Options*\n  {%- endif -%}\n{%- elif command ==\
+        \ \"pageup\" -%}\n  {%- if states(\"sensor.livingroom_media_device\") == \"\
+        htpc\" -%}\n    PageUp\n  {%- else -%}\n    ChannelUp\n  {%- endif -%}\n{%-\
+        \ elif command == \"pagedown\" -%}\n  {%- if states(\"sensor.livingroom_media_device\"\
+        ) == \"htpc\" -%}\n    PageDown\n  {%- else -%}\n    ChannelDown\n  {%- endif\
+        \ -%}\n{%- elif command == \"pause\" -%}\n  Pause\n{%- elif command == \"\
+        play\" -%}\n  Play\n{%- elif command == \"rewind\" -%}\n  {% if states(\"\
+        sensor.livingroom_remote_state\") == \"HTPC\"\n    or states(\"sensor.livingroom_remote_state\"\
+        ) == \"Philo\"\n    or  states(\"sensor.livingroom_remote_state\") == \"Hulu\"\
+        \n    or  states(\"sensor.livingroom_remote_state\") == \"Plex\"\n    or states(\"\
+        sensor.livingroom_remote_state\") == \"Netflix\" %}\n    DirectionLeft\n \
+        \ {% elif states(\"sensor.livingroom_remote_state\") == \"Youtube\" %}\n \
+        \   Rewind\n  {% else %}\n    InstantReplay\n  {% endif %}\n{%- elif command\
+        \ == \"right\" -%}\n  DirectionRight\n{%- elif command == \"stop\" -%}\n \
+        \ {%- if states(\"sensor.livingroom_media_device\") == \"htpc\" -%}\n    Stop\n\
+        \  {%- else -%}\n    Back\n  {%- endif -%}\n{%- elif command == \"up\" -%}\n\
+        \  DirectionUp\n{%- else -%}\n  OK\n{%- endif -%}\n"
+      num_repeats: "{%- if increment is defined -%}\n  {{ increment | int }}\n{%-\
+        \ else -%}\n  1\n{%- endif -%}\n"
+  mode: queued
+  max: 12
+media_cr_break:
+  alias: CR FF
+  sequence:
+  - service: remote.send_command
+    entity_id: remote.livingroom
+    data:
+      device: 66658758
+      command: FastForward
+      num_repeats: 80
+  - service: remote.send_command
+    entity_id: remote.livingroom
+    data:
+      device: 66658758
+      command: OK
+      num_repeats: 1
+media_on_off:
+  alias: TV On and Off
+  sequence:
+  - service: remote.turn_on
+    entity_id: remote.livingroom
+    data_template:
+      activity: "{%- if on_off is defined -%}\n  {%- if on_off == \"on\" -%}\n   \
+        \ 31571897\n  {%- else -%}\n    -1\n  {%- endif -%}\n{%- else -%}\n  {%- if\
+        \ states('sensor.livingroom_remote_state') == \"off\" -%}\n    31571897\n\
+        \  {%- else -%}\n    -1\n  {%- endif -%}\n{% endif -%}\n"
+media_skip_back:
+  alias: TV Skip Back
+  sequence:
+  - service: remote.send_command
+    entity_id: remote.livingroom
+    data_template:
+      device: '{{ states("sensor.livingroom_media_device_id") }}
+
+        '
+      command: "{%- if states(\"sensor.livingroom_remote_state\") == \"HTPC\"\n  or\
+        \ states(\"sensor.livingroom_remote_state\") == \"Philo\"\n  or  states(\"\
+        sensor.livingroom_remote_state\") == \"Hulu\"\n  or  states(\"sensor.livingroom_remote_state\"\
+        ) == \"Plex\"\n  or states(\"sensor.livingroom_remote_state\") == \"Netflix\"\
+        \ -%}\n  DirectionLeft\n{%- elif states(\"sensor.livingroom_remote_state\"\
+        ) == \"Youtube\" -%}\n  Rewind\n{%- else -%}\n  InstantReplay\n{%- endif -%}\n"
+      num_repeats: "{%- if states(\"sensor.livingroom_remote_state\") == \"HTPC\"\
+        \ -%}\n  2\n{%- elif states(\"sensor.livingroom_remote_state\") == \"Amazon\"\
+        \ -%}\n  4\n{%- else -%}\n  6\n{%- endif -%}\n"
+  - service: remote.send_command
+    entity_id: remote.livingroom
+    data_template:
+      device: "{%- if states(\"sensor.livingroom_media_device\") == \"htpc\" -%}\n\
+        \  51738178\n{%- else -%}\n  66658758\n{%- endif -%}\n"
+      command: "{%- if states(\"sensor.livingroom_remote_state\") == \"HTPC\" -%}\n\
+        \  DirectionLeft\n{%- elif states(\"sensor.livingroom_remote_state\") == \"\
+        Hulu\"\n  or states(\"sensor.livingroom_remote_state\") == \"Netflix\"\n \
+        \ or states(\"sensor.livingroom_remote_state\") == \"Youtube\" -%}\n  Play\n\
+        {%- else -%}\n  OK\n{%- endif -%}\n"
+      num_repeats: "{%- if states(\"sensor.livingroom_remote_state\") == \"HTPC\"\
+        \ -%}\n  2\n{%- else -%}\n  1\n{%- endif -%}\n"
+livingroom_media_volume:
+  alias: TV Volume Up/Down
+  sequence:
+  - service: remote.send_command
+    entity_id: remote.livingroom
+    data_template:
+      device: 60888940
+      command: "{%- if command is defined -%}\n  {%- if command == \"up\" -%}\n  \
+        \  VolumeUp\n  {%- elif command == \"down\" -%}\n    VolumeDown\n  {%- elif\
+        \ command == \"voice\" -%}\n    Dialogue\n  {%- endif -%}\n{%- endif -%}\n"
+      num_repeats: "{%- if increment is defined -%}\n  {{ increment | int }}\n{%-\
+        \ else -%}\n  1\n{%- endif -%}\n"
+routine_bedtime:
+  alias: Bedtime Routine
+  sequence:
+  - data: {}
+    entity_id: scene.bedtime
+    service: scene.turn_on
+  - delay: 00:02:00
+  - data:
+      brightness_pct: 1
+    entity_id: light.the_sink_hole
+    service: light.turn_on
+  - service: rest_command.bedtime_routine
+    data: {}
+  mode: single
