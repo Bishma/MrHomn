@@ -35,7 +35,7 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
   hass:
     container_name: homeassistant
-    image: homeassistant/home-assistant:stable
+    image: homeassistant/home-assistant:2021.7
     restart: unless-stopped
     environment:
       - TZ=${TZ}
