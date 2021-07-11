@@ -28,7 +28,6 @@ services:
       - ./nginx/config:/etc/nginx/conf.d
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     logging:
       driver: json-file
       options:
@@ -44,14 +43,30 @@ services:
       - 8123
     volumes:
       - ./hass:/config
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+    depends_on:
+      - sql_db
+  zwavejs:
+    container_name: zwavejs
+    image: zwavejs/zwavejs2mqtt
+    restart: unless-stopped
+    environment:
+      - TZ=${TZ}
+    ports:
+      - "3000:3000"
+      - "8091:8091"
+    tty: true
+    volumes:
+      - ./zwavejs:/usr/src/app/store
     devices: 
       - "/dev/ttyACM0:/dev/ttyACM0"
     logging:
       driver: json-file
       options:
         max-size: "10m"
-  #  depends_on:
-  #    - sql_db
   #appdaemon:
   #  container_name: appdaemon
   #  restart: unless-stopped
@@ -71,23 +86,35 @@ services:
   #  restart: unless-stopped
   #  volumes:
   #    - "${PDATA_BASE_PATH}/esphome/config:/config"
-  #sql_db: 
-  #  image: linuxserver/mariadb  #https://hub.docker.com/r/linuxserver/mariadb
-  #  restart: always
-  #  environment:
-  #    - PUID="${UID}"
-  #    - PGID="${GID}""
-  #    - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT}
-  #    - TZ=${TZ}
-  #    - MYSQL_DATABASE=hass
-  #    - MYSQL_USER=hass
-  #    - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-  #  expose:
-  #    - 3306
-  #  volumes:
-  #    - "${PDATA_BASE_PATH}/sql_db/config:/config"
+  sql_db:
+    container_name: sql_db
+    image: linuxserver/mariadb # https://hub.docker.com/r/linuxserver/mariadb
+    restart: always
+    environment:
+      - PUID="${UID}"
+      - PGID="${GID}"
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT}
+      - TZ=${TZ}
+      - MYSQL_DATABASE=hass
+      - MYSQL_USER=hass
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    expose:
+      - 3306
+    volumes:
+      - ./sql_db/config:/config
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
   #drbackup:
   #  build:
   #    context: ./drbackup
   #  restart: unless-stopped
   #  depends_on: sql_db
+networks:
+  default:
+    name: mrhomn
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.20.0.0/24"
