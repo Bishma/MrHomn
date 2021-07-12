@@ -1,0 +1,16 @@
+secrets: /conf/secrets.yaml
+appdaemon:
+  latitude: 44.072188
+  longitude: -123.124491
+  elevation: 131
+  time_zone: America/Los_Angeles
+  plugins:
+    HASS:
+      type: hass
+      ha_url: http://hass:8123
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiI4Y2NmY2M1NmNhNGU0NGVmOThkZTczNmVkMmQyNmJmZiIsImlhdCI6MTYyNjA0NzMwNSwiZXhwIjoxOTQxNDA3MzA1fQ.oChsfv_0io2isQKDyZACCwJysMTqj1yYAD3qw6ppeUE"
+http:
+  url: http://127.0.0.1:5050
+admin:
+api:
+hadashboard:

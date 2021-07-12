@@ -1,0 +1,8 @@
+secrets.yaml
+
+apps/__pycache__/*
+
+compiled/*
+dashboards/*
+namespaces/*
+www/*

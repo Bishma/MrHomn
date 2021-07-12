@@ -18,7 +18,7 @@ services:
         max-size: "10m"
     depends_on: 
       - hass
-      #- appdaemon
+      - appdaemon
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
     container_name: certbot
@@ -67,25 +67,20 @@ services:
       driver: json-file
       options:
         max-size: "10m"
-  #appdaemon:
-  #  container_name: appdaemon
-  #  restart: unless-stopped
-  #  image: acockburn/appdaemon
-  #  environment:
-  #    HA_URL: "http://hass:8123"
-  #    TOKEN: "${HA_APPDAEMON_KEY}"
-  #  expose:
-  #    - 5050
-  #  volumes:
-  #    - "${PDATA_BASE_PATH}/appdaemon/config:/conf"
-  #  depends_on:
-  #    - hass
-  #  user: "${UID}:${GID}"
-  #esphome:
-  #  image: esphome/esphome # https://hub.docker.com/r/esphome/esphome
-  #  restart: unless-stopped
-  #  volumes:
-  #    - "${PDATA_BASE_PATH}/esphome/config:/config"
+  appdaemon:
+    container_name: appdaemon
+    restart: unless-stopped
+    image: acockburn/appdaemon:4.0.8
+    expose:
+      - 5050
+    volumes:
+      - ./appdaemon/config:/conf
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+    depends_on:
+      - hass
   sql_db:
     container_name: sql_db
     image: linuxserver/mariadb # https://hub.docker.com/r/linuxserver/mariadb
@@ -111,6 +106,8 @@ services:
   #    context: ./drbackup
   #  restart: unless-stopped
   #  depends_on: sql_db
+  #esphome:
+  #  image: esphome/esphome # https://hub.docker.com/r/esphome/esphome
 networks:
   default:
     name: mrhomn
