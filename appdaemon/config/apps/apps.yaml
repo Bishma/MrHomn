@@ -1,0 +1,4 @@
+---
+alexa:
+  module: alexa
+  class: Alexa
