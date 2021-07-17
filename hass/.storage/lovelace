@@ -1299,13 +1299,14 @@
                             "type": "entities",
                             "entities": [
                                 {
-                                    "entity": "switch.derek_couch_laptop"
+                                    "entity": "switch.mk3s",
+                                    "icon": "mdi:printer-3d-nozzle"
                                 },
                                 {
-                                    "entity": "switch.derek_couch_lamp"
+                                    "entity": "switch.octopi"
                                 },
                                 {
-                                    "entity": "switch.derek_couch_miscellaneous"
+                                    "entity": "switch.printer_miscellaneous"
                                 }
                             ],
                             "title": "Printer Power",
@@ -1317,9 +1318,6 @@
                             "entities": [
                                 {
                                     "entity": "sensor.garage_smoke_detector_status"
-                                },
-                                {
-                                    "entity": "sensor.garage_smoke_detector_battery_level"
                                 }
                             ],
                             "title": "Safety"
