@@ -1,38 +1,27 @@
 version: "3.6"
 services:
-  #Thanks to: https://pentacent.medium.com/nginx-and-lets-encrypt-with-docker-in-less-than-5-minutes-b4b8a60d3a71
-  nginx:
-    container_name: nginx
-    image: nginx:1.15-alpine
-    restart: unless-stopped
+  traefik:
+    image: "traefik:v2.5"
+    container_name: "traefik"
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=developer@dereksrose.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
-      - "8321:80"
       - "8322:443"
+      - "8080:8080"
     volumes:
-      - ./nginx/config:/etc/nginx/conf.d
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
+      - "./letsencrypt:/letsencrypt"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
     logging:
       driver: json-file
       options:
         max-size: "10m"
-    depends_on: 
-      - hass
-      - appdaemon
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-  certbot:
-    container_name: certbot
-    image: certbot/certbot
-    restart: unless-stopped
-    volumes:
-      - ./nginx/config:/etc/nginx/conf.d
-      - ./certbot/conf:/etc/letsencrypt
-      - ./certbot/www:/var/www/certbot
-    logging:
-      driver: json-file
-      options:
-        max-size: "10m"
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
   hass:
     container_name: homeassistant
     image: homeassistant/home-assistant:2021.7
@@ -41,12 +30,20 @@ services:
       - TZ=${TZ}
     expose:
       - 8123
+    ports:
+      - "8123:8123"
     volumes:
       - ./hass:/config
     logging:
       driver: json-file
       options:
         max-size: "10m"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.homeassistant.rule=Host(`yggdrasil.amalgamatedwidget.com`)
+      - traefik.http.routers.homeassistant.entrypoints=websecure
+      - traefik.http.routers.homeassistant.tls.certresolver=myresolver
+      - traefik.http.services.homeassistant.loadbalancer.server.port=8123
     depends_on:
       - sql_db
   zwavejs:
@@ -71,6 +68,8 @@ services:
     container_name: appdaemon
     restart: unless-stopped
     image: acockburn/appdaemon:4.0.8
+    ports:
+      - "5050:5050"
     expose:
       - 5050
     volumes:
@@ -79,6 +78,12 @@ services:
       driver: json-file
       options:
         max-size: "10m"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.appdaemon.rule=(Host(`yggdrasil.amalgamatedwidget.com`) && PathPrefix(`/api/appdaemon/`))
+      - traefik.http.routers.appdaemon.entrypoints=websecure
+      - traefik.http.routers.appdaemon.tls.certresolver=myresolver
+      - traefik.http.services.appdaemon.loadbalancer.server.port=5050
     depends_on:
       - hass
   sql_db:
@@ -101,11 +106,21 @@ services:
       driver: json-file
       options:
         max-size: "10m"
-  #drbackup:
-  #  build:
-  #    context: ./drbackup
-  #  restart: unless-stopped
-  #  depends_on: sql_db
+  drbackup:
+    container_name: drbackup
+    restart: unless-stopped
+    build:
+      context: ./drbackup
+    volumes:
+      - ./drbackup:/drbackup
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+    depends_on:
+      - sql_db
+    entrypoint: "tail -f /dev/null"
+    #entrypoint: "/bin/sh -c 'trap exit TERM; while :; do python3 /drbackup/drbackup.py; sleep 24h & wait $${!}; done;'"
   #esphome:
   #  image: esphome/esphome # https://hub.docker.com/r/esphome/esphome
 networks:
