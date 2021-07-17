@@ -215,7 +215,7 @@ media_cr_break:
     entity_id: remote.livingroom
     data:
       device: 66658758
-      command: FastForward
+      command: DirectionRight
       num_repeats: 80
   - service: remote.send_command
     entity_id: remote.livingroom
@@ -279,7 +279,7 @@ routine_bedtime:
   alias: Bedtime Routine
   sequence:
   - data: {}
-    entity_id: scene.bedtime
+    entity_id: scene.living_room_bedtime
     service: scene.turn_on
   - delay: 00:02:00
   - data:

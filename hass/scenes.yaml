@@ -22,11 +22,10 @@
     light.love_seat_up:
       state: 'off'
     switch.the_sparkle:
-      friendly_name: The Sparkle
-      state: 'off'
-    remote.livingroom:
       state: 'off'
     switch.garage_heater:
+      state: 'off'
+    remote.livingroom:
       state: 'off'
 - id: '1588745863286'
   name: Kitchen Bedtime
