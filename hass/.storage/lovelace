@@ -1108,13 +1108,8 @@
                                             {
                                                 "action_name": ">> 5min",
                                                 "action": "call-service",
-                                                "name": "Critical Role",
-                                                "entity": "script.livingroom_media_command",
-                                                "icon": "mdi:sword",
-                                                "service_data": {
-                                                    "command": "left",
-                                                    "increment": 80
-                                                }
+                                                "service": "script.turn_on",
+                                                "entity": "script.media_cr_break"
                                             }
                                         ],
                                         "show_header_toggle": false,
