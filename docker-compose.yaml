@@ -4,8 +4,9 @@ services:
     image: "traefik:v2.5"
     container_name: "traefik"
     command:
-      - "--log.level=DEBUG"
+      - "--log.level=WARN"
       - "--api.insecure=true"
+      - "--accesslog=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
@@ -15,9 +16,10 @@ services:
       - "--entrypoints.websecure.address=:443"
       - "--entrypoints.websecure.forwardedHeaders.insecure"
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=developer@dereksrose.com"
+      - "--certificatesresolvers.myresolver.acme.email=${LE_EMAIL}"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
     ports:
+      - "8321:80"
       - "8322:443"
       - "8080:8080"
     volumes:
@@ -45,7 +47,7 @@ services:
         max-size: "10m"
     labels:
       - traefik.enable=true
-      - traefik.http.routers.homeassistant.rule=Host(`yggdrasil.amalgamatedwidget.com`)
+      - traefik.http.routers.homeassistant.rule=Host(`${DOMAIN}`)
       - traefik.http.routers.homeassistant.entrypoints=websecure
       - traefik.http.routers.homeassistant.tls.certresolver=myresolver
       - traefik.http.services.homeassistant.loadbalancer.server.port=8123
@@ -85,7 +87,7 @@ services:
         max-size: "10m"
     labels:
       - traefik.enable=true
-      - traefik.http.routers.appdaemon.rule=(Host(`yggdrasil.amalgamatedwidget.com`) && PathPrefix(`/api/appdaemon/`))
+      - traefik.http.routers.appdaemon.rule=(Host(`${DOMAIN}`) && PathPrefix(`/api/appdaemon/`))
       - traefik.http.routers.appdaemon.entrypoints=websecure
       - traefik.http.routers.appdaemon.tls.certresolver=myresolver
       - traefik.http.services.appdaemon.loadbalancer.server.port=5050
