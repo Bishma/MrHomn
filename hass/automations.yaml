@@ -96,14 +96,15 @@
   action:
   - service: camera.snapshot
     data:
-      filename: /tmp/octoprint_1.jpg
-    entity_id: camera.octoprint_1
+      filename: /config/images/octoprint_1.jpg
+    target:
+      entity_id: camera.octoprint_1
   - delay: 00:00:5
   - data:
       message: Print Finished
       data:
         photo:
-        - file: /tmp/octoprint_1.jpg
+        - file: /config/images/octoprint_1.jpg
           caption: 3D printing complete
     service: notify.janet_reports
   mode: single

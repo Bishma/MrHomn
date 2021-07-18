@@ -44,6 +44,13 @@ http:
   use_x_forwarded_for: true
   trusted_proxies:
     - 172.20.0.0/24
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+
+homeassistant:
+  allowlist_external_dirs:
+    - /tmp
+    - /config/images
 
 input_boolean:
   # Display the bedroom media control UI
